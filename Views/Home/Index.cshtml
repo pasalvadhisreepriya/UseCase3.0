@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Example</title>
+</head>
+<body>
+    <div style="text-align: center; padding: 20px;">
+        <h1>Chatbot Example</h1>
+        <form asp-action="GetResponse" method="post">
+            <label for="choice">Choose an option:</label>
+            <select id="choice" name="choice">
+                <option value="1">Need answer</option>
+                <option value="2">Need code</option>
+                <option value="3">Need suggestion</option>
+            </select>
+            <br><br>
+            <label for="prompt">Enter your prompt:</label>
+            <input type="text" id="prompt" name="prompt" style="width: 300px;">
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Result))
+    {
+        <div style="text-align: center; padding: 20px;">
+            <h2>Result:</h2>
+            <p>@ViewBag.Result</p>
+            <form asp-action="SendEmail" method="post">
+                <label for="email">Enter your email address:</label>
+                <input type="email" id="email" name="email" style="width: 300px;">
+                <br><br>
+                <button type="submit">Send Email</button>
+            </form>
+        </div>
+    }
+</body>
+</html>
+
+
